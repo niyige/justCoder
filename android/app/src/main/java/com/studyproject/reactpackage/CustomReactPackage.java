@@ -5,6 +5,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
+import com.studyproject.manage.TextViewManager;
 import com.studyproject.module.CustomNativeModule;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class CustomReactPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> managers = new ArrayList<>();
+        managers.add(new TextViewManager());
         return managers;
     }
 }

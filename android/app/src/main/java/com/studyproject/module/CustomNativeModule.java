@@ -69,5 +69,6 @@ public class CustomNativeModule extends ReactContextBaseJavaModule {
         this.successBack = successBack;
         this.errorBack = errorBack;
         takeSuccessBack("传版本号RN展示: V1.0.0");
+       // takeErrorBack("获取失败");
     }
 }
