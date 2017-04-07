@@ -17,7 +17,7 @@ import NativeInterface from './nativeInterface';
 import SimpleTextView from './androidview/simpleTextView';
 import MainPage from './ui/mainPage';
 import { _onBackAndroid} from  './utils/utils';
-import  * as Dimens from './value/dimens';
+import * as Dimens from './value/dimens'
 
 const {height, width} = Dimensions.get('window'); //设置view占满屏幕宽度
 
