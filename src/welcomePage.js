@@ -16,8 +16,9 @@ import {
 import NativeInterface from './nativeInterface';
 import SimpleTextView from './androidview/simpleTextView';
 import MainPage from './ui/mainPage';
-import { _onBackAndroid} from  './utils/utils';
-import * as Dimens from './value/dimens'
+import {_onBackAndroid} from  './utils/utils';
+import * as Dimens from './value/dimens';
+import TitleBar from './view/titleBar';
 
 const {height, width} = Dimensions.get('window'); //设置view占满屏幕宽度
 
@@ -26,6 +27,7 @@ export default class WelcomePage extends Component {
     constructor(props) {
         super(props);
     }
+
     componentDidMount() {
 
         if (Dimens.isAndroid) {
@@ -49,48 +51,56 @@ export default class WelcomePage extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-
-                <TouchableOpacity
-                    onPress={() => {
-                        this._jumpMain();
-                    }}>
-                    <Text style={styles.instructions}>
-                        {'点击跳首页'}
-                    </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={{marginBottom: 20}}
-                    onPress={() => {
-                        NativeInterface.showToast('Welcome to React Native');
-                    }}>
-                    <Text style={styles.welcome}>
-                        {'点击弹出原生toast'}
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{marginBottom: 20}}
-                    onPress={() => {
-                        NativeInterface.getAppVersion((success) => {
-                            NativeInterface.showToast(success);
-                        }, (error) => {
-                            //获取数据失败回调
-                        });
-                    }}>
-                    <Text style={styles.instructions}>
-                        {'点击获取原生数据'}
-                    </Text>
-                </TouchableOpacity>
-
-
-                <SimpleTextView
-                    style={{width: width, height: 40}}
-                    text={'我是原生的TextView,你怕不怕'}
-                    textSize={15}
-                    textColor={'black'}
-                    textGravity={'center'}
+            <View style={{flex: 1, backgroundColor: Dimens.color_bg_f2}}>
+                <TitleBar
+                    centerText={'欢迎页面'}
+                    isShowLeftBackIcon={false}
+                    navigator={this.props.navigator}
                 />
+                <View style={styles.container}>
+
+
+                    <TouchableOpacity
+                        onPress={() => {
+                            this._jumpMain();
+                        }}>
+                        <Text style={styles.welcome}>
+                            {'点击跳首页'}
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={{marginBottom: 20}}
+                        onPress={() => {
+                            NativeInterface.showToast('Welcome to React Native');
+                        }}>
+                        <Text style={styles.instructions}>
+                            {'点击弹出原生toast'}
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{marginBottom: 20}}
+                        onPress={() => {
+                            NativeInterface.getAppVersion((success) => {
+                                NativeInterface.showToast(success);
+                            }, (error) => {
+                                //获取数据失败回调
+                            });
+                        }}>
+                        <Text style={styles.instructions}>
+                            {'点击获取原生数据'}
+                        </Text>
+                    </TouchableOpacity>
+
+
+                    <SimpleTextView
+                        style={{width: width, height: 40}}
+                        text={'我是原生的TextView,你怕不怕'}
+                        textSize={15}
+                        textColor={'black'}
+                        textGravity={'center'}
+                    />
+                </View>
             </View>
         );
     }

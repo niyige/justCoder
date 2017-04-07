@@ -14,6 +14,9 @@ import {
 import * as Utils from '../utils/utils';
 import CountDownTimer from '../view/countDownTimer';
 import showCountDownTimerPage from './showCountDownTimerPage';
+import TitleBar from '../view/titleBar';
+import * as Dimens from '../value/dimens';
+import ShowTitlePage from '../ui/showTitlePage';
 
 const {width} = Dimensions.get('window');
 
@@ -28,6 +31,10 @@ export default class MainPage extends Component {
 
     }
 
+    /**
+     * 跳普通倒计时页
+     * @private
+     */
     _jumpCountDownTimePage() {
         const {navigator} = this.props;
         if (navigator) {
@@ -41,7 +48,11 @@ export default class MainPage extends Component {
         }
     }
 
-    _defaultCountDownTimePage(){
+    /**
+     * 跳默认倒计时页
+     * @private
+     */
+    _defaultCountDownTimePage() {
         const {navigator} = this.props;
         if (navigator) {
             navigator.push({
@@ -54,29 +65,64 @@ export default class MainPage extends Component {
         }
     }
 
+    /**
+     * 跳  查看标题页
+     * @private
+     */
+    _showTitleBarPage() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'ShowTitlePage',
+                component: ShowTitlePage,
+                // params: {
+                //     title: '首页',
+                // },
+            })
+        }
+    }
+
     render() {
         return (
-            <View style={styles.containerView}>
-                <TouchableOpacity
-                    style={{marginBottom:20}}
-                    onPress={() => {
-                        this._defaultCountDownTimePage();
-                    }}>
-                    <Text style={styles.instructions}>
-                        {'点击查看默认倒计时'}
-                    </Text>
-                </TouchableOpacity>
+            <View style={{flex: 1, backgroundColor: Dimens.color_bg_f2}}>
+                <TitleBar
+                    centerText={'首页'}
+                    isShowLeftBackIcon={true}
+                    navigator={this.props.navigator}
+                />
+
+                <View style={styles.containerView}>
+
+                    <TouchableOpacity
+                        style={{marginBottom: 20}}
+                        onPress={() => {
+                            this._showTitleBarPage();
+                        }}>
+                        <Text style={{ fontSize: 15,}}>
+                            {'点击查看各种标题'}
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={{marginBottom: 20}}
+                        onPress={() => {
+                            this._defaultCountDownTimePage();
+                        }}>
+                        <Text style={{ fontSize: 15,}}>
+                            {'点击查看默认倒计时'}
+                        </Text>
+                    </TouchableOpacity>
 
 
-                <TouchableOpacity
-                    onPress={() => {
-                        this._jumpCountDownTimePage();
-                    }}>
-                    <Text style={styles.instructions}>
-                        {'点击查看传参数倒计时'}
-                    </Text>
-                </TouchableOpacity>
-
+                    <TouchableOpacity
+                        onPress={() => {
+                            this._jumpCountDownTimePage();
+                        }}>
+                        <Text style={{ fontSize: 15,}}>
+                            {'点击查看传参数倒计时'}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     };
