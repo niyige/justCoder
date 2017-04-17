@@ -13,7 +13,7 @@ RN调用原生模块,原生数据，原生组件的例子，注意：目前只�
 增加标题栏封装
 # 版本更新1.0
 RN调用原生模块,原生数据，原生组件的例子
-#效果
+# 效果
 ![image](https://github.com/niyige/justCoder/blob/master/screenshots/title.jpg)
 <br/>
 ![image](https://github.com/niyige/justCoder/blob/master/screenshots/time.jpg)
